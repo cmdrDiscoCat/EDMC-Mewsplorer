@@ -84,20 +84,20 @@ def plugin_app(parent):
     r = 0
 
     this.mewlabelelw = tk.Label(this.mewcontainer, text="ELW:")
-    this.mewlabelelw.grid(row=0, column=0, sticky=tk.W)
+    this.mewlabelelw.grid(row=r, column=0, sticky=tk.W)
     this.mewelw = tk.Label(this.mewcontainer, text="", fg="white")
-    this.mewelw.grid(row=0, column=1, sticky=tk.W)
+    this.mewelw.grid(row=r, column=1, sticky=tk.W)
 
     r += 1
 
-    this.mewlabelww = tk.Label(this.mewcontainer, text="Water worlds:")
+    this.mewlabelww = tk.Label(this.mewcontainer, text="WW:")
     this.mewlabelww.grid(row=r, column=0, sticky=tk.W)
     this.mewww = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewww.grid(row=r, column=1, sticky=tk.W)
 
     r += 1
 
-    this.mewlabelaw = tk.Label(this.mewcontainer, text="Ammonia worlds:")
+    this.mewlabelaw = tk.Label(this.mewcontainer, text="AW:")
     this.mewlabelaw.grid(row=r, column=0, sticky=tk.W)
     this.mewaw = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewaw.grid(row=r, column=1, sticky=tk.W)
@@ -111,35 +111,35 @@ def plugin_app(parent):
 
     r += 1
 
-    this.mewlabelgg = tk.Label(this.mewcontainer, text="Gas giants:")
+    this.mewlabelgg = tk.Label(this.mewcontainer, text="GG:")
     this.mewlabelgg.grid(row=r, column=0, sticky=tk.W)
     this.mewgg = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewgg.grid(row=r, column=1, sticky=tk.W)
 
     r += 1
 
-    this.mewlabelwg = tk.Label(this.mewcontainer, text="Water giants:")
+    this.mewlabelwg = tk.Label(this.mewcontainer, text="WG:")
     this.mewlabelwg.grid(row=r, column=0, sticky=tk.W)
     this.mewwg = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewwg.grid(row=r, column=1, sticky=tk.W)
 
     r += 1
 
-    this.mewlabelriw = tk.Label(this.mewcontainer, text="Rocky icy worlds:")
+    this.mewlabelriw = tk.Label(this.mewcontainer, text="Rocky icy:")
     this.mewlabelriw.grid(row=r, column=0, sticky=tk.W)
     this.mewriw = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewriw.grid(row=r, column=1, sticky=tk.W)
 
     r += 1
 
-    this.mewlabelrw = tk.Label(this.mewcontainer, text="Rocky worlds:")
+    this.mewlabelrw = tk.Label(this.mewcontainer, text="Rocky:")
     this.mewlabelrw.grid(row=r, column=0, sticky=tk.W)
     this.mewrw = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewrw.grid(row=r, column=1, sticky=tk.W)
 
     r += 1
 
-    this.mewlabeliw = tk.Label(this.mewcontainer, text="Icy worlds:")
+    this.mewlabeliw = tk.Label(this.mewcontainer, text="Icy:")
     this.mewlabeliw.grid(row=r, column=0, sticky=tk.W)
     this.mewiw = tk.Label(this.mewcontainer, text="", fg="white")
     this.mewiw.grid(row=r, column=1, sticky=tk.W)
@@ -182,56 +182,86 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
     :return: None
     """
     logger.debug(f'[Mewsplorer] cmdr = "{cmdrname}", is_beta = "{is_beta}", system = "{system}", station = "{station}"')
-    if entry['event'] == 'Scan' or entry['event'] == 'Location' or entry['event'] == 'FSDJump':
+    found = ''
+    if entry['event'] in ['Scan', 'Location', 'FSDJump']:
         this.mewdg["text"] = entry['event']
 
     # Then, we check many things to add to the different list (elw, ww, aw and tf) if the event is a scan
     if entry['event'] == 'Scan':
-        bodyname = str(entry["Bodyname"])
-        bodyname.replace(this.current_system+" ", '')
+        bodyname = str(entry["BodyName"])
+        bodyname = bodyname.replace(system+" ", '')
 
-        if entry['PlanetClass'] == 'Earthlike body':
+        if "Earthlike body" in str(entry['PlanetClass']):
             this.elw_list.append(bodyname)
-            this.mewelw["text"] = this.elw_list
-        if entry['PlanetClass'] == 'Water world':
+            this.mewelw["text"] = ' | '.join(sorted(this.elw_list))
+            this.mewlatest["text"] = bodyname
+
+        if "Water world" in str(entry['PlanetClass']):
             this.ww_list.append(bodyname)
-            this.mewww["text"] = this.ww_list
-        if entry['PlanetClass'] == 'Ammonia world':
+            this.mewww["text"] = ' | '.join(sorted(this.ww_list))
+            this.mewlatest["text"] = bodyname
+
+        if "Ammonia world" in str(entry['PlanetClass']):
             this.aw_list.append(bodyname)
-            this.mewaw["text"] = this.aw_list
-        if entry['PlanetClass'] == 'High metal content body':
+            this.mewaw["text"] = ' | '.join(sorted(this.aw_list))
+            this.mewlatest["text"] = bodyname
+
+        if 'High metal content body' in str(entry['PlanetClass']):
             this.hmc_list.append(bodyname)
-            this.mewhmc["text"] = this.hmc_list
-        if entry['PlanetClass'] == 'Rocky body ':
+            this.mewhmc["text"] = ' | '.join(sorted(this.hmc_list))
+            this.mewlatest["text"] = bodyname
+
+        if "Rocky body" in str(entry['PlanetClass']):
             this.rw_list.append(bodyname)
-            this.mewrw["text"] = this.rw_list
-        if entry['PlanetClass'] == 'Icy body ':
+            this.mewrw["text"] = ' | '.join(sorted(this.rw_list))
+            this.mewlatest["text"] = bodyname
+
+        if "Icy body" in str(entry['PlanetClass']):
             this.iw_list.append(bodyname)
-            this.mewiw["text"] = this.iw_list
-        if entry['PlanetClass'] == 'Rocky ice body ':
+            this.mewiw["text"] = ' | '.join(sorted(this.iw_list))
+            this.mewlatest["text"] = bodyname
+
+        if "Rocky ice body" in str(entry['PlanetClass']):
             this.riw_list.append(bodyname)
-            this.mewriw["text"] = this.riw_list
-        if str(entry['PlanetClass']).find('Gas giant') > -1:
+            this.mewriw["text"] = ' | '.join(sorted(this.riw_list))
+            this.mewlatest["text"] = bodyname
+
+        if str(entry['PlanetClass']).find("Gas giant") != -1:
             this.gg_list.append(bodyname)
-            this.mewgg["text"] = this.gg_list
-        if str(entry['PlanetClass']).find('Water giant') > -1:
+            this.mewgg["text"] = ' | '.join(sorted(this.gg_list))
+            this.mewlatest["text"] = bodyname
+
+        if str(entry['PlanetClass']).find("Water giant") != -1:
             this.wg_list.append(bodyname)
-            this.mewwg["text"] = this.wg_list
-        if entry['TerraformState'] != 'null':
+            this.mewwg["text"] = ' | '.join(sorted(this.wg_list))
+            this.mewlatest["text"] = bodyname
+
+        if entry['TerraformState'] != '':
             this.tf_list.append(bodyname)
-            this.mewtf["text"] = this.tf_list
+            this.mewtf["text"] = ' | '.join(sorted(this.tf_list))
 
     if entry['event'] == 'Location' or entry['event'] == 'FSDJump':
-        this.current_system = entry["StarSystem"]
+        this.elw_list.clear()
+        this.ww_list.clear()
+        this.aw_list.clear()
+        this.hmc_list.clear()
+        this.rw_list.clear()
+        this.riw_list.clear()
+        this.iw_list.clear()
+        this.gg_list.clear()
+        this.wg_list.clear()
+        this.tf_list.clear()
 
-        this.elw_list = []
-        this.ww_list = []
-        this.aw_list = []
-        this.hmc_list = []
-        this.rw_list = []
-        this.riw_list = []
-        this.iw_list = []
-        this.gg_list = []
-        this.wg_list = []
+        this.mewelw["text"] = ""
+        this.mewww["text"] = ""
+        this.mewaw["text"] = ""
+        this.mewhmc["text"] = ""
+        this.mewrw["text"] = ""
+        this.mewiw["text"] = ""
+        this.mewriw["text"] = ""
+        this.mewgg["text"] = ""
+        this.mewwg["text"] = ""
 
-        this.tf_list = []
+        this.mewtf["text"] = ""
+        this.mewlatest["text"] = ""
+
