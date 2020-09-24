@@ -230,6 +230,11 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
             this.gg_list.append(bodyname)
             this.mewgg["text"] = ' | '.join(sorted(this.gg_list))
             this.mewlatest["text"] = bodyname
+        else:
+            if str(entry['PlanetClass']).find("gas giant") != -1:
+                this.gg_list.append(bodyname)
+                this.mewgg["text"] = ' | '.join(sorted(this.gg_list))
+                this.mewlatest["text"] = bodyname
 
         if str(entry['PlanetClass']).find("Water giant") != -1:
             this.wg_list.append(bodyname)
