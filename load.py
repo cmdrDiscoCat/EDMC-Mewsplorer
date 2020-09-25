@@ -91,7 +91,7 @@ def plugin_app(parent):
     this.mewlabelelw = tk.Label(this.mewcontainer, text="ELW:", width=wcategory)
     this.mewlabelelw.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelelw.configure(anchor="w")
-    this.mewelw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewelw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewelw.grid(row=r, column=1, sticky=tk.W)
     this.mewelw.configure(anchor="w")
 
@@ -100,7 +100,7 @@ def plugin_app(parent):
     this.mewlabelww = tk.Label(this.mewcontainer, text="WW:", width=wcategory)
     this.mewlabelww.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelww.configure(anchor="w")
-    this.mewww = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewww = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewww.grid(row=r, column=1, sticky=tk.W)
     this.mewww.configure(anchor="w")
 
@@ -109,7 +109,7 @@ def plugin_app(parent):
     this.mewlabelaw = tk.Label(this.mewcontainer, text="AW:", width=wcategory)
     this.mewlabelaw.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelaw.configure(anchor="w")
-    this.mewaw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewaw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewaw.grid(row=r, column=1, sticky=tk.W)
     this.mewaw.configure(anchor="w")
 
@@ -118,7 +118,7 @@ def plugin_app(parent):
     this.mewlabelhmc = tk.Label(this.mewcontainer, text="HMC:", width=wcategory)
     this.mewlabelhmc.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelhmc.configure(anchor="w")
-    this.mewhmc = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewhmc = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewhmc.grid(row=r, column=1, sticky=tk.W)
     this.mewhmc.configure(anchor="w")
 
@@ -127,7 +127,7 @@ def plugin_app(parent):
     this.mewlabelgg = tk.Label(this.mewcontainer, text="GG:", width=wcategory)
     this.mewlabelgg.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelgg.configure(anchor="w")
-    this.mewgg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewgg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewgg.grid(row=r, column=1, sticky=tk.W)
     this.mewgg.configure(anchor="w")
 
@@ -136,7 +136,7 @@ def plugin_app(parent):
     this.mewlabelwg = tk.Label(this.mewcontainer, text="WG:", width=wcategory)
     this.mewlabelwg.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelwg.configure(anchor="w")
-    this.mewwg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewwg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewwg.grid(row=r, column=1, sticky=tk.W)
     this.mewwg.configure(anchor="w")
 
@@ -145,7 +145,7 @@ def plugin_app(parent):
     this.mewlabelriw = tk.Label(this.mewcontainer, text="Rocky icy:", width=wcategory)
     this.mewlabelriw.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelriw.configure(anchor="w")
-    this.mewriw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewriw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewriw.grid(row=r, column=1, sticky=tk.W)
     this.mewriw.configure(anchor="w")
 
@@ -154,7 +154,7 @@ def plugin_app(parent):
     this.mewlabelrw = tk.Label(this.mewcontainer, text="Rocky:", width=wcategory)
     this.mewlabelrw.grid(row=r, column=0, sticky=tk.W)
     this.mewlabelrw.configure(anchor="w")
-    this.mewrw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewrw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewrw.grid(row=r, column=1, sticky=tk.W)
     this.mewrw.configure(anchor="w")
 
@@ -163,7 +163,7 @@ def plugin_app(parent):
     this.mewlabeliw = tk.Label(this.mewcontainer, text="Icy:", width=wcategory)
     this.mewlabeliw.grid(row=r, column=0, sticky=tk.W)
     this.mewlabeliw.configure(anchor="w")
-    this.mewiw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewiw = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewiw.grid(row=r, column=1, sticky=tk.W)
     this.mewiw.configure(anchor="w")
 
@@ -172,7 +172,7 @@ def plugin_app(parent):
     this.mewlabeltf = tk.Label(this.mewcontainer, text="TF:", width=wcategory)
     this.mewlabeltf.grid(row=r, column=0, sticky=tk.W)
     this.mewlabeltf.configure(anchor="w")
-    this.mewtf = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewtf = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewtf.grid(row=r, column=1, sticky=tk.W)
     this.mewtf.configure(anchor="w")
 
@@ -181,7 +181,7 @@ def plugin_app(parent):
     this.mewlabellatest = tk.Label(this.mewcontainer, text="Last Scan:", width=wcategory)
     this.mewlabellatest.grid(row=r, column=0, sticky=tk.W)
     this.mewlabellatest.configure(anchor="w")
-    this.mewlatest = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewlatest = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewlatest.grid(row=r, column=1, sticky=tk.W)
     this.mewlatest.configure(anchor="w")
 
@@ -190,7 +190,7 @@ def plugin_app(parent):
     this.mewlabeldg = tk.Label(this.mewcontainer, text="Debug:", width=wcategory)
     this.mewlabeldg.grid(row=r, column=0, sticky=tk.W)
     this.mewlabeldg.configure(anchor="w")
-    this.mewdg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200)
+    this.mewdg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewdg.grid(row=r, column=1, sticky=tk.W)
     this.mewdg.configure(anchor="w")
 
