@@ -23,6 +23,7 @@ this.elw_list = []
 this.ww_list = []
 this.aw_list = []
 this.hmc_list = []
+this.mrb_list = []
 this.rw_list = []
 this.riw_list = []
 this.iw_list = []
@@ -83,7 +84,6 @@ def plugin_app(parent):
     wlist = 28
 
     this.mewcontainer = tk.Frame(this.frame)
-    this.mewcontainer.rowconfigure(6)
     this.mewcontainer.columnconfigure(2)
     
     r = 0
@@ -121,6 +121,15 @@ def plugin_app(parent):
     this.mewhmc = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
     this.mewhmc.grid(row=r, column=1, sticky=tk.W)
     this.mewhmc.configure(anchor="w")
+
+    r += 1
+
+    this.mewlabelmrb = tk.Label(this.mewcontainer, text="Metal-rich:", width=wcategory)
+    this.mewlabelmrb.grid(row=r, column=0, sticky=tk.W)
+    this.mewlabelmrb.configure(anchor="w")
+    this.mewmrb = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
+    this.mewmrb.grid(row=r, column=1, sticky=tk.W)
+    this.mewmrb.configure(anchor="w")
 
     r += 1
 
@@ -214,6 +223,7 @@ def prepare_lists():
     this.ww_list = natural_sort(this.ww_list)
     this.aw_list = natural_sort(this.aw_list)
     this.hmc_list = natural_sort(this.hmc_list)
+    this.mrb_list = natural_sort(this.mrb_list)
     this.rw_list = natural_sort(this.rw_list)
     this.riw_list = natural_sort(this.riw_list)
     this.iw_list = natural_sort(this.iw_list)
@@ -273,6 +283,13 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
                 this.hmc_list.append(bodyname)
                 prepare_lists()
                 this.mewhmc["text"] = ' | '.join(this.hmc_list)
+                this.mewlatest["text"] = bodyname
+
+        if 'Metal rich body' in str(entry['PlanetClass']):
+            if not bodyname in this.mrb_list and not bodyname_mapped in this.mrb_list:
+                this.mrb_list.append(bodyname)
+                prepare_lists()
+                this.mewmrb["text"] = ' | '.join(this.mrb_list)
                 this.mewlatest["text"] = bodyname
 
         if "Rocky body" in str(entry['PlanetClass']):
@@ -352,6 +369,11 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
                     this.hmc_list[index] = bodyname + '*'
                     this.mewhmc["text"] = ' | '.join(this.hmc_list)
 
+            for index, item in enumerate(this.mrb_list):
+                if (item == bodyname):
+                    this.mrb_list[index] = bodyname + '*'
+                    this.mewmrb["text"] = ' | '.join(this.mrb_list)
+
             for index, item in enumerate(this.rw_list):
                 if (item == bodyname):
                     this.rw_list[index] = bodyname + '*'
@@ -389,6 +411,7 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
         this.ww_list.clear()
         this.aw_list.clear()
         this.hmc_list.clear()
+        this.mrb_list.clear()
         this.rw_list.clear()
         this.riw_list.clear()
         this.iw_list.clear()
@@ -400,6 +423,7 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
         this.mewww["text"] = ""
         this.mewaw["text"] = ""
         this.mewhmc["text"] = ""
+        this.mewmrb["text"] = ""
         this.mewrw["text"] = ""
         this.mewiw["text"] = ""
         this.mewriw["text"] = ""
