@@ -15,8 +15,6 @@ appname = "Mewsplorer"
 plugin_name = os.path.basename(os.path.dirname(__file__))
 
 this = sys.modules[__name__]
-this.terraformables_text = ""
-this.status_text = "waiting for scans"
 
 # Lists for the elements we want to keep in memory
 this.elw_list = []
@@ -196,23 +194,16 @@ def plugin_app(parent):
 
     r += 1
 
-    this.mewlabeldg = tk.Label(this.mewcontainer, text="Debug:", width=wcategory)
-    this.mewlabeldg.grid(row=r, column=0, sticky=tk.W)
-    this.mewlabeldg.configure(anchor="w")
-    this.mewdg = tk.Label(this.mewcontainer, text="", fg="white", width=wlist, wraplength=200, justify=LEFT)
-    this.mewdg.grid(row=r, column=1, sticky=tk.W)
-    this.mewdg.configure(anchor="w")
-
     this.mewcontainer.pack(side=LEFT)
 
     return this.frame
-
 
 
 def natural_sort(l):
     convert = lambda text: int(text) if text.isdigit() else text.lower()
     alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
     return sorted(l, key = alphanum_key)
+
 
 def prepare_lists():
     """
@@ -244,12 +235,6 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
     :return: None
     """
     logger.debug(f'[Mewsplorer] cmdr = "{cmdrname}", is_beta = "{is_beta}", system = "{system}", station = "{station}"')
-    found = ''
-    if entry['event'] in ['Scan', 'Location', 'FSDJump', 'SAAScanComplete']:
-        if entry['event'] == 'SAAScanComplete':
-            this.mewdg["text"] = entry
-        else:
-            this.mewdg["text"] = entry["event"]
 
     # Then, we check many things to add to the different list (elw, ww, aw and tf) if the event is a scan
     if entry['event'] == 'Scan':
@@ -345,10 +330,9 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
             # We recreate the same name as we could find on list
             bodyname = str(entry["BodyName"])
             bodyname = bodyname.replace(system+" ", '').replace(" ", "")
-            this.mewdg['text'] = "Mapped "+bodyname
             prepare_lists()
 
-            #Then we check each list to find that body
+            # Then we check each list to find that body
             for index, item in enumerate(this.elw_list):
                 if (item == bodyname):
                     this.elw_list[index] = bodyname + '*'
@@ -403,8 +387,6 @@ def journal_entry(cmdrname: str, is_beta: bool, system: str, station: str, entry
                 if (item == bodyname):
                     this.tf_list[index] = bodyname + '*'
                     this.mewtf["text"] = ' | '.join(this.tf_list)
-
-
 
     if entry['event'] == 'Location' or entry['event'] == 'FSDJump':
         this.elw_list.clear()
